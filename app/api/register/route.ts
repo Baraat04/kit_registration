@@ -7,7 +7,7 @@ const cors = Cors({
   methods: ["POST"],
   origin:
     process.env.NODE_ENV === "production"
-      ? "https://kit-registration-vn2o.vercel.app/"
+      ? "https://kit-registration-vn2o.vercel.app"
       : "http://localhost:3000",
 });
 

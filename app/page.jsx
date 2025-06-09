@@ -1,9 +1,11 @@
 "use client";
 
 import styles from "./page.module.css";
+import { useRouter } from "next/router";
 import { useState } from "react";
 export default function page() {
   const [isChoosen, setIsChoosen] = useState(true);
+  const router = useRouter();
   const [formData, setFormData] = useState({
     email: "",
     name: "",
@@ -30,6 +32,7 @@ export default function page() {
       const result = response.json();
       alert("Your credentials are submitter successfully");
       console.log(result);
+      router.push("/usersList");
     } catch (error) {
       alert("Provide credentials");
       console.log(error);

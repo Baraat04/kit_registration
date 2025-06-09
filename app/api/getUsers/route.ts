@@ -1,6 +1,14 @@
 import { NextResponse } from "next/server";
 import { PrismaClient } from "../../generated/prisma";
+import Cors from "cors";
 const prisma = new PrismaClient();
+const cors = Cors({
+  methods: ["POST"],
+  origin:
+    process.env.NODE_ENV === "production"
+      ? "https://kit-registration-vn2o.vercel.app/"
+      : "http://localhost:3000",
+});
 export async function GET() {
   try {
     const users = await prisma.user.findMany();

@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { PrismaClient } from "../../generated/prisma";
 import Cors from "cors";
 
@@ -10,6 +10,7 @@ const cors = Cors({
       ? "https://kit-registration-vn2o.vercel.app/"
       : "http://localhost:3000",
 });
+
 function runMiddleware(req: any, res: any, fn: any) {
   return new Promise((resolve, reject) => {
     fn(req, res, (result: any) => {
@@ -18,11 +19,13 @@ function runMiddleware(req: any, res: any, fn: any) {
     });
   });
 }
+
 export async function POST(req: Request) {
   await runMiddleware(req, {}, cors);
   console.log("MONGODB_URI:", process.env.MONGODB_URI);
   try {
     const data = await req.json();
+    console.log("Received data:", data);
     const { email, name, surname } = data;
 
     if (!email || !name || !surname) {
@@ -31,6 +34,7 @@ export async function POST(req: Request) {
         { status: 400 }
       );
     }
+
     const user = await prisma.user.create({
       data: {
         email,
@@ -39,8 +43,12 @@ export async function POST(req: Request) {
       },
     });
 
-    return NextResponse.json({ message: "User created successfully", user });
-  } catch (error) {
+    console.log("User created:", user);
+    return NextResponse.json(
+      { message: "User created successfully", user },
+      { status: 201 }
+    );
+  } catch (error: any) {
     console.error("Error saving user:", error);
     if (error.code === "P2002") {
       return NextResponse.json(
@@ -48,7 +56,10 @@ export async function POST(req: Request) {
         { status: 409 }
       );
     }
-    return NextResponse.json({ message: "Error saving user" }, { status: 500 });
+    return NextResponse.json(
+      { message: "Error saving user", error: error.message },
+      { status: 500 }
+    );
   } finally {
     await prisma.$disconnect();
   }

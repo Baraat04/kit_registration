@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "./page.module.css";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 export default function page() {
   const [isChoosen, setIsChoosen] = useState(true);

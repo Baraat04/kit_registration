@@ -30,8 +30,10 @@ const admin = () => {
 
   const deleteUser = async (id) => {
     try {
-      const response = await fetch(`/api/deleteUser/${id}`, {
+      setUsers(users.filter((user) => user.id !== id));
+      const response = await fetch("/api/deleteUser", {
         method: "DELETE",
+        body: JSON.stringify(id),
       });
 
       if (!response.ok) {

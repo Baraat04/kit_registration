@@ -1,0 +1,99 @@
+.usersList_main {
+  width: 100%;
+  height: 100vh;
+}
+
+.title {
+  font-family: montserrat;
+  font-size: 30px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.usersList_container {
+  width: 70%;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.userBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  width: 100%;
+  padding: 10px 15px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.284);
+  margin-top: 15px;
+  font-family: montserrat;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+/* admin */
+
+.login_main {
+  width: 100%;
+  height: 100vh;
+}
+
+.login_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60%;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.login_box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 50px;
+  width: 500px;
+  height: fit-content;
+  border-radius: 10px;
+  box-shadow: 0 0 5px 0.5px rgba(0, 0, 0, 0.227);
+  row-gap: 20px;
+}
+
+.login_title {
+  font-size: 25px;
+  font-family: montserrat;
+  text-align: center;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0 0 5px 0.5px rgba(0, 0, 0, 0.227);
+  outline: none;
+}
+
+.btn {
+  cursor: pointer;
+  padding: 10px 15px;
+  border: none;
+  background-color: rgba(0, 0, 255, 0.693);
+  border-radius: 10px;
+  color: white;
+  font-family: montserrat;
+}
+
+@media (max-width: 500px) {
+  .login_title {
+    width: 100px;
+    font-size: 15px;
+    text-align: center;
+  }
+  .usersList_container {
+    width: 80%;
+    height: 100%;
+    margin: 0 20px auto;
+  }
+}

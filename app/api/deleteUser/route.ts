@@ -3,10 +3,7 @@ import { PrismaClient } from "../../generated/prisma";
 
 const prisma = new PrismaClient();
 
-export async function DELETE(
-  req: Request,
-  { params }: { params: { id: string } }
-) {
+export async function DELETE(req: Request, params) {
   try {
     const { id } = params;
 
